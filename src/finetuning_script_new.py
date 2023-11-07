@@ -15,12 +15,12 @@ from huggingface_hub import login
 from datasets import load_dataset, DatasetDict
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training, PeftConfig
 from transformers import DataCollatorForLanguageModeling, TrainingArguments, Trainer
-import PeftModel
+from peft import PeftModel
 from utils import get_name_with_date, get_datasets
 
 
 login(token="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")
-
+data_path = "/home/cosimorulli/"
 os.environ["TRANSFORMERS_CACHE"] = f"{data_path}/cache"
 
 
@@ -136,7 +136,6 @@ def main():
     unique_model_name = get_name_with_date(model_output_path)
 
     output_path = os.path.join(args.output_dir, unique_model_name)
-    
 
     ###LOAD DATASET###
     # Load Shuffled Dataset Training and Validation
@@ -148,7 +147,6 @@ def main():
         print(f"Resuming training from {resume_from_checkpoint}")
     print(f"Model output path: {model_output_path}")
 
-    
     ds_train, ds_val, ds_test = get_datasets(dataset_name)
 
     raw_datasets = DatasetDict(
@@ -383,11 +381,6 @@ def main():
         f.write(f"name: {name}\n")
     ### save qlora config ###
     # with open (f'{model_output_path}/qlora_cofig.txt','w') as f: f.write(config)
-
-    from telegram_sender import send_message
-
-    send_message("First Finetuning Completed")
-
 
 if __name__ == "__main__":
     main()

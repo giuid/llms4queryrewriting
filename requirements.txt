@@ -1,0 +1,5 @@
+ipykernel 
+jupyter 
+transformers 
+tqdm
+peft

@@ -1,7 +1,6 @@
 FROM nvcr.io/nvidia/pytorch:22.12-py3
-RUN apt-get update 
-RUN apt-get -y install sudo
-RUN sudo apt -y install wget
+RUN apt-get update && \
+          apt-get -y install sudo
 #RUN sudo apt -y install nvtop
 #RUN sudo apt -y install htop
 
@@ -14,14 +13,16 @@ RUN python -m pip install --upgrade pip
 #RUN sudo systemctl ssh enable
 #RUN service ssh status
 
-RUN useradd -u 1009 -m guidorocchietti
+RUN useradd -u 1011 -m cosimorulli
 #RUN export CUDA_VISIBLE_DEVICES=0,1
 #RUN python -m pip install transformers
 #RUN python -m pip install torch 
-RUN python -m pip install ipykernel
-RUN python -m pip install jupyter
+RUN python -m pip install ipykernel jupyter pytorch transformers tqdm
+RUN python -m pip install 
 #RUN python -m pip install accelerate
 #RUN python -m pip install xformers
 #RUN python -m pip install --upgrade xformers
-#RUN sudo pip uninstall -y transformer-engine
+RUN sudo pip uninstall -y transformer-engine
 #RUN python -m pip install einops
+
+#RUN pip install faiss-gpu==1.7.1 bitarray datasets jupyter jupyterlab ninja scipy spacy tqdm transformers ujson boto3
