@@ -46,8 +46,9 @@ if do_qrecc:
     test_qrec.to_csv(f'qrecc_test_context_and_answer.csv',index=False)
 #%%
 
+import os
 from huggingface_hub import login
-login(token='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')
+login(token=os.environ.get('HF_TOKEN'))  # set HF_TOKEN in your environment
 
     
 # %%

@@ -10,7 +10,7 @@ else:
 os.environ['TRANSFORMERS_CACHE'] = f'{data_path}/cache'
 
 from huggingface_hub import login
-login(token='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')
+login(token=os.environ.get('HF_TOKEN'))  # set HF_TOKEN in your environment
 
 #%%
 from datasets import load_dataset, DatasetDict
